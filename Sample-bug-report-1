@@ -1,0 +1,54 @@
+# Bug Report: Items Duplicated When Player Leaves During Auto-Save Sequence
+
+Severity: Critical  
+**Category:** Gameplay / Economy  
+
+**Environment:**  
+- Platform: PC / Mobile  
+- Version/Build: 1.4.1
+- Server type: Public  
+
+## Steps to Reproduce
+1. Collect multiple items in-game (wood log (2x), wooden sword (1x), and apple (3x) were used here).  
+2. Trigger an auto-save event (in this case, we advanced to the cherry biome as we levelled up).  
+3. During the auto-save countdown or in-progress save, close Roblox immediately.  
+4. Rejoin the server and check the inventory and progress logs.  
+
+## Expected Result
+- Inventory should reflect only items collected once.  
+- Auto-save should either complete successfully or roll back safely if interrupted.  
+- No duplication or loss of items occurs.  
+
+## Actual Result
+- Items collected just before leaving are sometimes **duplicated**, appearing 2–3 times (we ended up with 3 times more of each item)
+- Quest progress may incorrectly mark objectives as complete multiple times.  
+- Inventory UI sometimes shows temporary inconsistencies until a full reload.  
+- Server logs indicate repeated "item add" calls during interrupted auto-save.  
+
+## Frequency
+Intermittent (~40% of attempts), more likely when leaving during the final 3–5 seconds of auto-save (20 attempts -> dupe worked 8 times).
+
+## Attachments
+- Screenshot of inventory showing duplicate items after reconnect  
+- Screen recording of leaving mid-auto-save and reconnecting  
+- Server log snippet showing repeated item addition  
+- Optional: Crash report / client log  
+
+## Additional Notes
+- This issue has **high exploit potential**, especially for valuable or rare items.  
+- More severe on Mobile clients due to slower network acknowledgment of save events.  
+- Likely regression from v1.3.5 where auto-save was refactored to asynchronous saves.  
+- Can impact leaderboards or economy if not fixed.  
+
+## Related Systems
+- Auto-save / checkpoint system  
+- Inventory management backend  
+- Network synchronization module  
+- Quest progress tracker  
+
+## Possible Cause (Optional)
+- Race condition where interrupted auto-save triggers multiple backend calls for the same items.  
+- Save confirmation not properly atomic; leaving mid-save allows duplicate write operations.  
+
+## Whether this is Regression (Optional)
+Yes, not present in v1.3.4; introduced in v1.3.5 async save refactor.
