@@ -1,0 +1,49 @@
+Bug Report Template
+
+Title:
+Short, clear summary of the issue.
+
+Severity:
+Low / Medium / High / Critical
+
+Category:
+UI / Gameplay / Visual / Economy / Input / Performance / Other
+
+Environment:
+- Platform (PC/Mobile)
+- Version / Build (if provided)
+- Server type (Public/Private)
+
+Steps to Reproduce:
+1.
+2.
+3.
+4.
+
+
+Expected Result:
+- Explain how the system should behave.
+
+Actual Result:
+- Explain what happens instead.
+
+Frequency:
+- 100% / Intermittent / Rare
+
+Attachments
+
+Screenshots
+
+Video
+
+Logs (if applicable)
+
+Additional Notes
+
+Related systems
+
+Possible cause (optional)
+
+Whether this is regression (optional)
+
+End of Template
