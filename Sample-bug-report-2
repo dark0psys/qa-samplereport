@@ -1,0 +1,70 @@
+# Bug Report: Cross-Server Migration Causes Partial State Rollback Leading to Ghost Items and Invisible Inventory Slots
+
+Severity: Critical  
+Category: Gameplay / Economy / Systems  
+
+Environment:
+- Platform: PC / Mobile  
+- Version/Build: 1.4.2  
+- Server Type: Public → Teleport to Instance → Public  
+
+## Steps to Reproduce
+1. Join any public server and collect multiple items (preferably stackable resources).  
+2. Trigger a **cross-server teleport** (e.g., enter a dungeon portal or instanced area).  
+3. While the teleport is initializing, wait for the **inventory snapshot** (“Preparing Transfer Data”).  
+4. During the snapshot window (1–2 seconds), rapidly interact with an inventory item (equip/unequip or split/merge stack).  
+5. Allow the teleport to finish and load into the instanced server.  
+6. Immediately leave the instanced server using **Return to Main World** before the full state sync completes.  
+7. Rejoin the original world and check the inventory.  
+
+## Expected Result
+- Inventory state should transfer consistently between servers.  
+- No duplication, missing items, or phantom “ghost” items should occur.  
+- Rolled-back states should resolve cleanly and not conflict with local UI cache.  
+
+## Actual Result
+- Items interacted with during the snapshot window appear **twice** or show as “ghost items” which:  
+  - cannot be moved,  
+  - cannot be deleted,  
+  - appear visually but are not recognized by backend systems.  
+- Some inventory slots become **invisible**, showing empty, but actually contain items the server believes exist.  
+- On rejoining the original world, the server applies the *older snapshot* instead of the most recent state, causing:  
+  - partial rollback of inventory,  
+  - duplication of certain stackable items,  
+  - desynchronized client inventory lists.  
+- Attempting to interact with ghost items triggers red warnings (“Invalid Inventory Index” or “Item Does Not Exist”).  
+
+## Frequency
+Rare (~20%), but significantly more frequent when:  
+- network latency >150ms,  
+- teleport loading takes longer than 3 seconds,  
+- player interacts with stackable items during snapshot.  
+
+## Attachments
+- Screen recording showing ghost items after teleport chain  
+- Screenshot of invisible inventory slots highlighting gaps  
+- Logs from both servers (main world + instanced) showing snapshot conflict  
+- Player-side console errors related to invalid item indexes  
+
+## Additional Notes
+- This bug combines **inventory caching, teleport migration, async state saving, and rollback logic**.  
+- Significant exploit potential: ghost items sometimes convert into real items after a manual save.  
+- Issue likely tied to the snapshot timestamp mismatch between the source server and destination server.  
+- Affects both stackable and non-stackable items, but stackables produce larger duplications due to merge rules.  
+
+## Related Systems
+- Server-to-server migration  
+- Async inventory snapshot system  
+- State rollback conflict resolution  
+- Client inventory caching  
+- Teleport framework  
+
+## Possible Cause (Optional)
+- Teleport system sends an outdated inventory snapshot while the local client simultaneously triggers an update event, resulting in:  
+  - double writes,  
+  - incomplete overwrite of inventory indexes,  
+  - desync between client cache and server authoritative state.
+
+## Whether this is Regression (Optional)
+Yes — not reproducible in build 1.3.x.  
+Issue introduced in 1.4.0 when teleport migration was moved to async snapshots.
