@@ -1,0 +1,87 @@
+--QA Testing Checklist--
+
+A generalized checklist I use to ensure thorough coverage across UI, gameplay, systems, and edge cases.
+This list adapts depending on the project type.
+
+1. Gameplay Consistency
+- Core loop behaves as intended
+- No actions trigger out-of-order sequences
+- Progression systems behave consistently across sessions
+- No unintended shortcuts or sequence breaks
+- No soft-locks or progression blockers
+
+2. UI & UX
+- All buttons respond properly
+- Hitboxes are correct
+- No overlapping text, misalignment, or clipping
+- All UI scales correctly for different screens
+- Menus open/close correctly
+- UI updates when values change
+- Incorrect states revert properly
+
+3. Economy & Currency Systems
+- Purchases deduct correct amounts
+- Rewards grant correct values
+- No duplication or exploit patterns
+- Timers, multipliers, bonuses update correctly
+- Cross-feature interactions don’t inflate value
+- Shop bundles display correct contents
+
+4. Monetization Systems
+- Purchase buttons behave as intended
+- Products match Roblox developer product IDs
+- Confirm/cancel works for each prompt
+- UI cannot accidentally be double-purchased
+- No free-granting premium content from UI bugs
+
+5. Collision & Movement
+- No fall-through-floor areas
+- Wall collisions behave consistently
+- Vehicle/character movement has no unintended speed boosts
+- Jumping/steering mechanics behave within expected bounds
+
+6. Input Testing
+- Keyboard
+- Mouse
+- Controller [I can test on both an XBOX or PlayStation Series to ensure console bugs are voided]
+- Mobile touch
+- Movement + action simultaneously
+- Holding vs tapping behavior
+
+7. Performance
+- Stable FPS in all scenes
+- No memory buildup
+- No frame hitching when switching screens
+- Asset loading happens smoothly
+
+8. Audio
+- Volumes consistent
+- No looping issues
+- Audio follows the correct objects
+
+9. Visual / VFX
+- No flickering
+- No clipping
+- No partially loaded models
+- No repeating VFX appearing outside intended UI frames
+- Transparency and layering consistent
+
+10. Edge Cases / STRESS TESTING
+- Sudden disconnects
+- Rejoining mid-progress
+- Spamming buttons
+- Rapid purchase attempts
+- Interruption mid-animation
+- Leaving & rejoining during auto-savesaves
+
+11. Regression Testing
+
+Before confirming a fix:
+- Verify the reported bug no longer occurs
+- Verify related systems still function correctly
+- Test old scenarios + new edge cases
+- Test with different devices/platforms
+
+
+
+# End of Checklist
