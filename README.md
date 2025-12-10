@@ -15,4 +15,24 @@ It includes:
 
 -----
 
-Note: These samples are slightly altered or changed compared to the original ones to preserve internal game details.
+# 📁 Structure
+
+/sample-bugs — Polished example bug reports
+
+/templates — The reusable bug reporting format I work with
+
+/checklist — My personal testing checklist used to ensure coverage
+
+# 🎯 My QA Approach & Values
+
+- Clear communication
+- Reproducibility
+- Visual clarity with attachments
+- Categorization (severity, component, environment)
+- Testing both expected behavior and unexpected edge cases
+- Reporting actionable issues developers can fix quickly
+-----------
+
+If you'd like to see detailed reports, open the sample-bugs folder.
+
+That's it for the README.
