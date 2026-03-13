@@ -1,6 +1,6 @@
 # qa-samplereport
 
-# QA Sample Reports — **Astro**
+# QA Sample Reports, **Astro.**
 
 This repository showcases my QA testing style, structure, and reporting clarity.
 It includes:
@@ -25,12 +25,13 @@ It includes:
 
 # 🎯 My QA Approach & Values
 
-- Clear communication
-- Reproducibility
-- Visual clarity with attachments
-- Categorization (severity, component, environment)
-- Testing both expected behavior and unexpected edge cases
-- Reporting actionable issues developers can fix quickly
+- clear communication and respect.
+- reproducibility
+- visual clarity with attachments
+- neat categorization (severity, component, environment)
+- testing both expected behavior and unexpected edge cases
+- reporting actionable issues developers can fix quickly
+- swift production of reports as fast as required
 -----------
 
 If you'd like to see detailed reports, open the sample-bugs folder.
