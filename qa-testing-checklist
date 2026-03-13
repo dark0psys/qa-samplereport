@@ -3,6 +3,9 @@
 A generalized checklist I use to ensure thorough coverage across UI, gameplay, systems, and edge cases.
 This list adapts depending on the project type.
 
+Before we continue, I would like to mention that most of the points on these checklists are for a newly-released game which could possess a huge number of bugs. 
+Once the game enters Alpha, most of these checklist options are unnecessary and overkill. You may still read it if you want, but it's extremely basic, almost every checkpoint in this list is usually 100% functional in the game.
+
 1. Gameplay Consistency
 - Core loop behaves as intended
 - No actions trigger out-of-order sequences
